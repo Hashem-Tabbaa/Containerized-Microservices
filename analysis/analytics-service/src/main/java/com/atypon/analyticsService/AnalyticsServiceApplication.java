@@ -25,12 +25,15 @@ public class AnalyticsServiceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         while (true){
+
+            // get data from MySQL database and analyze it (average, max, min).
             Double average = temperatureAnalysisService.getAverageTemperature();
             Double max = temperatureAnalysisService.getMaxTemperature();
             Double min = temperatureAnalysisService.getMinTemperature();
             System.out.println("Average: " + average + " Max: " + max + " Min: " + min);
 
             try{
+                // save the analyzed data in MongoDB database.
                 storeAnalysisService.storeAnalysis("average", average, "1");
                 storeAnalysisService.storeAnalysis("max", max, "2");
                 storeAnalysisService.storeAnalysis("min", min, "3");

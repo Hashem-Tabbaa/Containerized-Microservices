@@ -21,8 +21,12 @@ public class AnalysisController {
         if(request.getSession().getAttribute("username") == null){
             return "redirect:/login";
         }
-        model.addAttribute("analysis", new AnalysisMongo());
+        //get analysis from the database using the analysis service
         model.addAttribute("analysis_values", analysisService.getAnalysis());
+
+        // AnalysisMongo is the model class for the analysis values
+        model.addAttribute("analysis", new AnalysisMongo());
+
         return "results";
     }
 }

@@ -11,7 +11,6 @@ public class LoginService {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://authentication:8081/authenticate";
         String result = restTemplate.postForObject(url, user, String.class);
-
         return result.equals("true");
     }
 
